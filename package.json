@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev":"tsx index.ts",
+    "dev:watch": "tsx watch index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "cdk:synth": "cdk synth",
     "cdk:deploy": "cdk deploy",
-    "cdk:destroy": "cdk destroy"
+    "cdk:destroy": "cdk destroy",
+    "start": "node dist/index.js",
+    "setup:tables": "npx tsx scripts/create-tables.ts",
+    "view:tables": "npx tsx scripts/view-tables.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,10 +22,15 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.958.0",
     "@aws-sdk/lib-dynamodb": "^3.958.0",
+    "@aws-sdk/util-dynamodb": "^3.964.0",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.159",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
     "@types/jasmine": "^5.1.13",
     "@types/node": "^25.0.3",
     "esbuild": "^0.27.2",

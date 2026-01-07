@@ -2,14 +2,16 @@ import {  DynamoDBClient,PutItemCommand,ScanCommand,GetItemCommand,UpdateItemCom
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { TimeSlot, CreateTimeSlotInput } from '../models/timeslot';
 import { v4 as uuidv4 } from 'uuid';
+import { createDynamoDBClient } from '../config/dynamodb';
+
 
 export class TimeSlotRepository {
   private client: DynamoDBClient;
   private tableName: string;
 
   constructor(tableName: string, region?: string) {
-    const awsRegion = region || process.env.AWS_REGION || 'ap-south-1';
-    this.client = new DynamoDBClient({ region: awsRegion });
+    //const awsRegion = region || process.env.AWS_REGION || 'ap-south-1';
+    this.client = createDynamoDBClient();
     this.tableName = tableName;
   }
 

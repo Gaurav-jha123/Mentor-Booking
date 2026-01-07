@@ -3,6 +3,7 @@ import { Booking, CreateBookingInput } from "../models/booking";
 import {v4 as uuidv4} from 'uuid';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { errorMonitor } from "node:events";
+import { createDynamoDBClient } from "../config/dynamodb";
 
 
 
@@ -16,8 +17,8 @@ export class BookingRepository{
     constructor(bookingsTableName : string , timeSlotsTable : string,
         region ?: string
     ){
-        const awsRegion = region || process.env.AWS_REGION || 'ap-south-1';
-        this.client = new DynamoDBClient({ region: awsRegion });
+        //const awsRegion = region || process.env.AWS_REGION || 'ap-south-1';
+        this.client = createDynamoDBClient();
         this.bookingsTableName =bookingsTableName;
         this.timeSlotsTableName = timeSlotsTable;
     }
