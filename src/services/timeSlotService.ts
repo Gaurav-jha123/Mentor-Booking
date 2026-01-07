@@ -82,4 +82,11 @@ export class TimeSlotService{
             await this.timeSlotRepository.delete(slotId);
     }
     
+    async getTimeSlot(slotId: string): Promise<TimeSlot | null> {
+    if (!slotId) {
+        throw new Error('Slot ID is required');
+    }
+    return await this.timeSlotRepository.findById(slotId);
+    }
+
 }
